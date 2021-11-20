@@ -4,6 +4,7 @@ using Auc.Data.Interfaces;
 using Auc.Data.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -148,6 +149,28 @@ namespace Auc.Service.Services
         {
             _repo.UpdateStatus(StatusId, StudentId);
             _repo.Save();
+        }
+
+
+        public DataTable ExportApplications(string Name, int? UniversityId, int? AppStatus)
+        {
+            IEnumerable<StudentVM> Applications = GetStudents(Name, UniversityId, AppStatus);
+            DataTable DT = new DataTable();
+            DT.Columns.Add("First Name", typeof(string));
+            DT.Columns.Add("Second Name", typeof(string));
+            DT.Columns.Add("Birth Date", typeof(string));
+            DT.Columns.Add("National Id", typeof(string));
+            DT.Columns.Add("University", typeof(string));
+            DT.Columns.Add("Major", typeof(string));
+            DT.Columns.Add("GPA", typeof(string));
+            DT.Columns.Add("Status", typeof(string));
+
+            foreach(var item in Applications)
+            {
+                DT.Rows.Add(item.FirstName, item.SecondName, item.BirthDataStr, item.NationalId, item.UniversityName, item.Major, item.GPA, item.Status);
+            }
+
+            return DT;
         }
          
 
