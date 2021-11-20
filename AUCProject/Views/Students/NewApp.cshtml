@@ -9,6 +9,8 @@
 @using (Html.BeginForm("NewApp", "Students", FormMethod.Post,new { enctype = "multipart/form-data" }))
 {
     <div class="form-group">
+        @Html.HiddenFor(m => m.UserId, new {@value=ViewBag.UserId })
+
         @Html.LabelFor(m => m.FirstName)
         @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.FirstName)

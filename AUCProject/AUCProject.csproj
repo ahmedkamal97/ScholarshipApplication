@@ -494,6 +494,7 @@
     <Content Include="Views\Students\EditStudentApp.cshtml" />
     <Content Include="Views\Students\Index.cshtml" />
     <Content Include="Views\Students\EditStatus.cshtml" />
+    <Content Include="Views\Students\Sucessfully.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

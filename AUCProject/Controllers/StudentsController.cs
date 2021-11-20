@@ -95,7 +95,7 @@ namespace AUCProject.Controllers
 
 
             _studentService.Add(Entity);
-            return View();
+            return View("Sucessfully");
         }
 
 
@@ -161,6 +161,11 @@ namespace AUCProject.Controllers
         }
 
 
+
+        public ActionResult Sucessfully()
+        {
+            return View();
+        }
 
         public FileResult ExportApplications(string Name, int? UniversityId, int? AppStatus)
         {
