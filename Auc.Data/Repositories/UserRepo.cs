@@ -24,6 +24,15 @@ namespace Auc.Data.Repositories
             return _db.tblUsers;
         }
 
+        public int GetMaxId()
+        {
+            try
+            {
+                return _db.tblUsers.Where(c => c.Removed == false).Max(x => x.Id);
+            }
+            catch { return 0; }
+        }
+
         public void Save()
         {
             _db.SaveChanges();

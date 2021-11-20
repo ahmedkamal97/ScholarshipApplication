@@ -22,30 +22,59 @@ namespace AUCProject.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult Register(AddUserVM Entity)
         {
-            
+
             var User = _userService.GatUserFromMail(Entity.EmailAddress);
-       
-            if (User != null && _studentService.CheckExsistApp(User.Id))
+
+            if (User != null && User.UserType == StaticUsersType.Student)
             {
-                if (_userService.CheckPassWord(Entity.PassWord, UserId) == null)
-                    return RedirectToAction("EditStudentApp", "Students", new { UserId = UserId });
+                if (_studentService.CheckExsistApp(User.Id))
+                {
+                    if (_userService.CheckPassWord(Entity.PassWord, User.Id) == null)
+                        return RedirectToAction("EditStudentApp", "Students", new { UserId = User.Id });
+                    else
+                    {
+                        ModelState.AddModelError("Password", "Password is InnCorrect");
+                        return View(Entity);
+                    }
+                }
+
+                else
+                {
+                    if (!ModelState.IsValid)
+                        return View(Entity);
+                }
+
+
+
+            }
+
+            else if (User != null && User.UserType == StaticUsersType.Admin)
+
+            {
+                if (_userService.CheckPassWord(Entity.PassWord, User.Id) == null)
+                    return RedirectToAction("Index", "Students");
                 else
                 {
                     ModelState.AddModelError("Password", "Password is InnCorrect");
                     return View(Entity);
                 }
+
+
             }
+
             else
-            {
-                if (!ModelState.IsValid)
-                    return View(Entity);
-            }
-            _userService.AddUser(Entity);
-            return RedirectToAction("NewApp", "Students");
+            
+                _userService.AddUser(Entity);
+                var MaxId = _userService.GetMaxId();
+                return RedirectToAction("NewApp", "Students", new { UserId = MaxId });
+            
+
+
+
         }
     }
 }

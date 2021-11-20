@@ -65,5 +65,11 @@ namespace Auc.Service.Services
                 return "PassWord";
 
         }
+
+
+        public int GetMaxId ()
+        {
+            return _repo.GetMaxId();
+        }
     }
 }

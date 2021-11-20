@@ -69,8 +69,9 @@ namespace AUCProject.Controllers
 
 
         [HttpGet]
-        public ActionResult NewApp()
+        public ActionResult NewApp(int UserId)
         {
+            ViewBag.UserId = UserId;
             ViewBag.Universities = _universityService.GetUniversity();
             return View();
         }

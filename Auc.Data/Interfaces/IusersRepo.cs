@@ -11,6 +11,7 @@ namespace Auc.Data.Interfaces
     {
         IEnumerable<tblUser> GetUsers();
         void Add(tblUser Entity);
+        int GetMaxId();
         void Save();
     }
 }
