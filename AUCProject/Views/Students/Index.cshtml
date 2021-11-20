@@ -19,6 +19,11 @@
                     @Html.DropDownListFor(m => m.Filter.University, new SelectList(ViewBag.Universities, "Id", "Name"), "Select University", new { @class = "form-control" })
                 </div>
 
+
+                  <div class="form-group">
+                    @Html.DropDownListFor(m => m.Filter.StatusId, new SelectList(ViewBag.Status, "Id", "Name"), "Select App Status", new { @class = "form-control" })
+                </div>
+
                 <button class="btn btn-success" type="submit">Search</button>
 
                  <a class="btn btn-info" href="@Url.Action("ExportApplications","Students",new {

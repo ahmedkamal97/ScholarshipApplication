@@ -30,6 +30,7 @@ namespace AUCProject.Controllers
         public ActionResult Index()
         {
             ViewBag.Universities = _universityService.GetUniversity();
+            ViewBag.Status = _statusService.GetAppStatuses();
             var Filter = new StudentFilter
             {
                 Name=null,
@@ -49,6 +50,7 @@ namespace AUCProject.Controllers
         public ActionResult Index(StudentsContainerVM Entity)
         {
             ViewBag.Universities = _universityService.GetUniversity();
+            ViewBag.Status = _statusService.GetAppStatuses();
 
             Entity.Filter = new StudentFilter
             {

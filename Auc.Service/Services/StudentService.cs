@@ -83,7 +83,7 @@ namespace Auc.Service.Services
             if (UniversityId != null)
                 Students = Students.Where(c => c.UniversityId == UniversityId);
 
-            if (UniversityId != null)
+            if (AppStatus != null)
                 Students = Students.Where(c => c.StatusId == AppStatus);
 
             return Students;
