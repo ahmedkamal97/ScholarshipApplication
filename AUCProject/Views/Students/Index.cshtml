@@ -20,6 +20,11 @@
                 </div>
 
                 <button class="btn btn-success" type="submit">Search</button>
+
+                 <a class="btn btn-info" href="@Url.Action("ExportApplications","Students",new {
+                       Name = Model.Filter.Name,UniversityId=Model.Filter.University,AppStatus=Model.Filter.StatusId})">
+                        Export
+                 </a>
             }
         </div>
 

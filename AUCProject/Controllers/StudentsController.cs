@@ -1,7 +1,9 @@
 ﻿using Auc.Common.ViewModels.Students;
 using Auc.Service.Services;
+using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -154,6 +156,39 @@ namespace AUCProject.Controllers
             _studentService.Update(Entity.StatusId, Entity.Id);
             return RedirectToAction("Index");
         }
+
+
+
+        public FileResult ExportApplications(string Name, int? UniversityId, int? AppStatus)
+        {
+            DataTable DT = new DataTable();
+            string ExcelName = "Applications";
+            DT = _studentService.ExportApplications(Name, UniversityId, AppStatus);
+            return ExportSetting(DT, ExcelName);
+        }
+
+
+
+        public FileResult ExportSetting(DataTable DT, string Name)
+        {
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                var wsDetailedData = wb.Worksheets.Add(DT, "Applications");
+
+                wsDetailedData.Columns().AdjustToContents();
+                wsDetailedData.Rows().AdjustToContents();
+
+                wsDetailedData.Range(1, 1, DT.Rows.Count + 1, 23).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                wsDetailedData.Range(1, 1, DT.Rows.Count + 1, 23).Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", Name + " " + DateTime.Now.ToLongDateString() + ".xlsx");
+                }
+            }
+        }
+
 
 
     }
