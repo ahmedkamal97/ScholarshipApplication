@@ -27,6 +27,9 @@ namespace AUCProject.Controllers
         public ActionResult Register(AddUserVM Entity)
         {
 
+            if (!ModelState.IsValid)
+                return View(Entity);
+
             var User = _userService.GatUserFromMail(Entity.EmailAddress);
 
             if (User != null && User.UserType == StaticUsersType.Student)
