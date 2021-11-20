@@ -34,7 +34,11 @@ namespace AUCProject.Controllers
                 if (_studentService.CheckExsistApp(User.Id))
                 {
                     if (_userService.CheckPassWord(Entity.PassWord, User.Id) == null)
+                    {
+                        if (!ModelState.IsValid)
+                            return View(Entity);
                         return RedirectToAction("EditStudentApp", "Students", new { UserId = User.Id });
+                    }
                     else
                     {
                         ModelState.AddModelError("Password", "Password is InnCorrect");
