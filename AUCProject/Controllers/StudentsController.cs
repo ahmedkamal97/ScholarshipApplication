@@ -16,12 +16,14 @@ namespace AUCProject.Controllers
 
         private StudentService _studentService;
         private UniversityService _universityService;
-        private AppStatusService _statusService; 
+        private AppStatusService _statusService;
+        private MailService _mailService;
         public StudentsController()
         {
             _studentService = new StudentService();
             _universityService = new UniversityService();
             _statusService = new AppStatusService();
+            _mailService = new MailService();
         }
 
 
@@ -157,6 +159,7 @@ namespace AUCProject.Controllers
                 return View(Entity);
             }
             _studentService.Update(Entity.StatusId, Entity.Id);
+            _mailService.SendMail(Entity.Id);
             return RedirectToAction("Index");
         }
 

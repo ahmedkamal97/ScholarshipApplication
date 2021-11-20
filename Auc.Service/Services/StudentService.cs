@@ -39,7 +39,8 @@ namespace Auc.Service.Services
                      GPA = x.GPA,
                      ResumePath = x.Resume,
                      StatusId = x.StatusId,
-                     Status=x.tblAppStatu?.ApplicationStatus
+                     Status=x.tblAppStatu?.ApplicationStatus,
+                     EmailAddress=x.tblUser?.EmailAddress
                  });
         }
 
@@ -63,7 +64,8 @@ namespace Auc.Service.Services
                 GPA = Entity.GPA,
                 ResumePath = Entity.Resume,
                 StatusId = Entity.StatusId,
-                Status = Entity.tblAppStatu?.ApplicationStatus
+                Status = Entity.tblAppStatu?.ApplicationStatus,
+                EmailAddress=Entity.tblUser?.EmailAddress
 
 
             };
