@@ -44,10 +44,16 @@ namespace Auc.Service.Services
             string EmailUser() => "";
             string EmailPassword() => "";
 
-            using (SmtpClient smtp = new SmtpClient())
+            using (SmtpClient smtp = new SmtpClient("smtp.gmail.com",587))
             {
+
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.UseDefaultCredentials = true;
+
                 using (MailMessage Mail = new MailMessage())
                 {
+                   
                     
                     Mail.To.Add(Recept);
                     Mail.From = new MailAddress($"{EmailUser()}@gmail.com", "ScholarShip Application");
