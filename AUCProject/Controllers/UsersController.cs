@@ -26,8 +26,10 @@ namespace AUCProject.Controllers
         [HttpPost]
         public ActionResult Register(AddUserVM Entity)
         {
-            var UserId = _userService.GatUserFromMail(Entity.EmailAddress);
-            if (UserId != 0 && _studentService.CheckExsistApp(UserId))
+            
+            var User = _userService.GatUserFromMail(Entity.EmailAddress);
+       
+            if (User != null && _studentService.CheckExsistApp(User.Id))
             {
                 if (_userService.CheckPassWord(Entity.PassWord, UserId) == null)
                     return RedirectToAction("EditStudentApp", "Students", new { UserId = UserId });
@@ -37,14 +39,11 @@ namespace AUCProject.Controllers
                     return View(Entity);
                 }
             }
-
             else
             {
                 if (!ModelState.IsValid)
                     return View(Entity);
             }
-          
-            
             _userService.AddUser(Entity);
             return RedirectToAction("NewApp", "Students");
         }

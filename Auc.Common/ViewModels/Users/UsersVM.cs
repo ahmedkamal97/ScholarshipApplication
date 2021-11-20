@@ -11,5 +11,6 @@ namespace Auc.Common.ViewModels.Users
         public int Id { get; set; }
         public string EmailAddress { get; set; }
         public string PassWord { get; set; }
+        public int? UserType { get; set; }
     }
 }

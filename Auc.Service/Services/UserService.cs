@@ -26,7 +26,8 @@ namespace Auc.Service.Services
                 {
                     Id = x.Id,
                     EmailAddress = x.EmailAddress,
-                    PassWord = x.Password
+                    PassWord = x.Password,
+                    UserType=x.UserType
                 });
         }
 
@@ -45,13 +46,13 @@ namespace Auc.Service.Services
         }
 
 
-        public int GatUserFromMail(string EmailAddress)
+        public UsersVM GatUserFromMail(string EmailAddress)
         {
-            var Mail = GetUsers().FirstOrDefault(c => c.EmailAddress?.ToLower() == EmailAddress?.ToLower());
-            if (Mail != null)
-                return Mail.Id;
+            var User = GetUsers().FirstOrDefault(c => c.EmailAddress?.ToLower() == EmailAddress?.ToLower());
+            if (User != null)
+                return User;
             else
-                return 0;
+                return new UsersVM();
         }
 
 
