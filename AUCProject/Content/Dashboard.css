@@ -77,3 +77,27 @@
     width: 50%;
     padding: 15px;
 }
+
+
+.Subject {
+    padding: 20px;
+    border: 1px solid #c09853;
+    width: 60%;
+    margin-left: 20%;
+    box-shadow: 9px 13px 29px -10px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 9px 13px 29px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 9px 13px 29px -10px rgba(0,0,0,0.75);
+
+    margin-top:30px;
+    margin-bottom:50px;
+
+    text-align:center;
+    border-radius:15px;
+}
+
+    .Subject p {
+        font-size: 20px;
+        color: #c09853;
+        font-weight:bold;
+    }
+
