@@ -23,6 +23,7 @@ namespace AUCProject.Controllers
             var Counts = _dashboardService.GetCounts();
             var ViewModel = new DashboardContainerVM
             {
+                AppCount=Counts.AppCount,
                 PendingCount = Counts.PendingCount,
                 AceptedCount = Counts.AceptedCount,
                 RejectedCount =Counts.RejectedCount

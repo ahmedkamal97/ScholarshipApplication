@@ -8,6 +8,7 @@ namespace Auc.Common.ViewModels.Dashboard
 {
     public class DashboardContainerVM
     {
+        public int AppCount { get; set; }
         public int PendingCount { get; set; }
         public int AceptedCount { get; set; }
         public int RejectedCount { get; set; }

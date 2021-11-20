@@ -21,6 +21,7 @@ namespace Auc.Service.Services
             var Students = _studentService.GetStudents();
             var ViewModel = new DashboardContainerVM
             {
+                AppCount=Students.Count(),
                 PendingCount=Students.Where(c=>c.StatusId==StaticAppStatus.Pending).Count(),
                 AceptedCount=Students.Where(c=>c.StatusId==StaticAppStatus.Accepted).Count(),
                 RejectedCount=Students.Where(c=>c.StatusId==StaticAppStatus.Rejected).Count()
