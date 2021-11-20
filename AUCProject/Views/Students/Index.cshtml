@@ -1,0 +1,76 @@
+﻿@model Auc.Common.ViewModels.Students.StudentsContainerVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="container">
+        <div class="col-md-2">
+            @using (Html.BeginForm("Index", "Students"))
+            {
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Filter.Name, new { @class="form-control",@placeHolder="Name"})
+                </div>
+
+                <div class="form-group">
+                    @Html.DropDownListFor(m => m.Filter.University, new SelectList(ViewBag.Universities, "Id", "Name"), "Select University", new { @class = "form-control" })
+                </div>
+
+                <button class="btn btn-success" type="submit">Search</button>
+            }
+        </div>
+
+        <div class="col-md-10">
+            <table class="table table-bordered" id="Tbl">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Second Name</th>
+                        <th>Birth Date</th>
+                        <th>National Id</th>
+                        <th>University</th>
+                        <th>Major</th>
+                        <th>GPA</th>
+                        <th>Resume</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model.Student)
+                    {
+                        <tr>
+                            <td>@item.FirstName</td>
+                            <td>@item.SecondName</td>
+                            <td>@item.BirthDataStr</td>
+                            <td>@item.NationalId</td>
+                            <td>@item.UniversityName</td>
+                            <td>@item.Major</td>
+                            <td>@item.GPA</td>
+                            <td>
+                                <a href="@item.ResumePath" target="_blank">Open</a>
+                            </td>
+                            <td>@item.Status</td>
+                            <td>
+                                <a href="@Url.Action("EditStatus","Students",new {Id=item.Id})"  class="btn btn-warning">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('#Tbl').dataTable({
+            "searching": false
+        });  
+    </script>
+    
+    }
+

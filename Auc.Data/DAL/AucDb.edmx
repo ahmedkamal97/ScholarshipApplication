@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AUCDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblAppStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationStatus" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tblStudents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="20" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="20" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="NationalId" Type="nvarchar" MaxLength="14" />
+          <Property Name="University" Type="int" />
+          <Property Name="Major" Type="nvarchar" MaxLength="50" />
+          <Property Name="GPA" Type="float" />
+          <Property Name="Resume" Type="nvarchar(max)" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="Removed" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblUniversity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Removed" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserType" Type="int" />
+          <Property Name="Removed" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblUserTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_tblStudents_tblAppStatus">
+          <End Role="tblAppStatus" Type="Self.tblAppStatus" Multiplicity="0..1" />
+          <End Role="tblStudents" Type="Self.tblStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAppStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudents">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudents_tblUniversity">
+          <End Role="tblUniversity" Type="Self.tblUniversity" Multiplicity="0..1" />
+          <End Role="tblStudents" Type="Self.tblStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUniversity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudents">
+              <PropertyRef Name="University" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudents_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblStudents" Type="Self.tblStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudents">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblUserTypes">
+          <End Role="tblUserTypes" Type="Self.tblUserTypes" Multiplicity="0..1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AUCDBModelStoreContainer">
+          <EntitySet Name="tblAppStatus" EntityType="Self.tblAppStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStudents" EntityType="Self.tblStudents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUniversity" EntityType="Self.tblUniversity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserTypes" EntityType="Self.tblUserTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblStudents_tblAppStatus" Association="Self.FK_tblStudents_tblAppStatus">
+            <End Role="tblAppStatus" EntitySet="tblAppStatus" />
+            <End Role="tblStudents" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudents_tblUniversity" Association="Self.FK_tblStudents_tblUniversity">
+            <End Role="tblUniversity" EntitySet="tblUniversity" />
+            <End Role="tblStudents" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudents_tblUser" Association="Self.FK_tblStudents_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblStudents" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblUserTypes" Association="Self.FK_tblUser_tblUserTypes">
+            <End Role="tblUserTypes" EntitySet="tblUserTypes" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AUCDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AUCDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblStudents" EntityType="AUCDBModel.tblStudent" />
+          <EntitySet Name="tblUniversities" EntityType="AUCDBModel.tblUniversity" />
+          <EntitySet Name="tblUsers" EntityType="AUCDBModel.tblUser" />
+          <AssociationSet Name="FK_tblStudents_tblUniversity" Association="AUCDBModel.FK_tblStudents_tblUniversity">
+            <End Role="tblUniversity" EntitySet="tblUniversities" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudents_tblUser" Association="AUCDBModel.FK_tblStudents_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+          <EntitySet Name="tblUserTypes" EntityType="AUCDBModel.tblUserType" />
+          <AssociationSet Name="FK_tblUser_tblUserTypes" Association="AUCDBModel.FK_tblUser_tblUserTypes">
+            <End Role="tblUserType" EntitySet="tblUserTypes" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+          <EntitySet Name="tblAppStatus" EntityType="AUCDBModel.tblAppStatu" />
+          <AssociationSet Name="FK_tblStudents_tblAppStatus" Association="AUCDBModel.FK_tblStudents_tblAppStatus">
+            <End Role="tblAppStatu" EntitySet="tblAppStatus" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SecondName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="NationalId" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="University" Type="Int32" />
+          <Property Name="Major" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GPA" Type="Double" />
+          <Property Name="Resume" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="Removed" Type="Boolean" />
+          <NavigationProperty Name="tblUniversity" Relationship="AUCDBModel.FK_tblStudents_tblUniversity" FromRole="tblStudent" ToRole="tblUniversity" />
+          <NavigationProperty Name="tblUser" Relationship="AUCDBModel.FK_tblStudents_tblUser" FromRole="tblStudent" ToRole="tblUser" />
+          <NavigationProperty Name="tblAppStatu" Relationship="AUCDBModel.FK_tblStudents_tblAppStatus" FromRole="tblStudent" ToRole="tblAppStatu" />
+        </EntityType>
+        <EntityType Name="tblUniversity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Removed" Type="Boolean" />
+          <NavigationProperty Name="tblStudents" Relationship="AUCDBModel.FK_tblStudents_tblUniversity" FromRole="tblUniversity" ToRole="tblStudent" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="Int32" />
+          <Property Name="Removed" Type="Boolean" />
+          <NavigationProperty Name="tblStudents" Relationship="AUCDBModel.FK_tblStudents_tblUser" FromRole="tblUser" ToRole="tblStudent" />
+          <NavigationProperty Name="tblUserType" Relationship="AUCDBModel.FK_tblUser_tblUserTypes" FromRole="tblUser" ToRole="tblUserType" />
+        </EntityType>
+        <Association Name="FK_tblStudents_tblUniversity">
+          <End Type="AUCDBModel.tblUniversity" Role="tblUniversity" Multiplicity="0..1" />
+          <End Type="AUCDBModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUniversity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="University" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudents_tblUser">
+          <End Type="AUCDBModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+          <End Type="AUCDBModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUsers" Relationship="AUCDBModel.FK_tblUser_tblUserTypes" FromRole="tblUserType" ToRole="tblUser" />
+        </EntityType>
+        <Association Name="FK_tblUser_tblUserTypes">
+          <End Type="AUCDBModel.tblUserType" Role="tblUserType" Multiplicity="0..1" />
+          <End Type="AUCDBModel.tblUser" Role="tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblAppStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblStudents" Relationship="AUCDBModel.FK_tblStudents_tblAppStatus" FromRole="tblAppStatu" ToRole="tblStudent" />
+        </EntityType>
+        <Association Name="FK_tblStudents_tblAppStatus">
+          <End Type="AUCDBModel.tblAppStatu" Role="tblAppStatu" Multiplicity="0..1" />
+          <End Type="AUCDBModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAppStatu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AUCDBModelStoreContainer" CdmEntityContainer="AUCDBEntities">
+          <EntitySetMapping Name="tblStudents">
+            <EntityTypeMapping TypeName="AUCDBModel.tblStudent">
+              <MappingFragment StoreEntitySet="tblStudents">
+                <ScalarProperty Name="Removed" ColumnName="Removed" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Resume" ColumnName="Resume" />
+                <ScalarProperty Name="GPA" ColumnName="GPA" />
+                <ScalarProperty Name="Major" ColumnName="Major" />
+                <ScalarProperty Name="University" ColumnName="University" />
+                <ScalarProperty Name="NationalId" ColumnName="NationalId" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUniversities">
+            <EntityTypeMapping TypeName="AUCDBModel.tblUniversity">
+              <MappingFragment StoreEntitySet="tblUniversity">
+                <ScalarProperty Name="Removed" ColumnName="Removed" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="AUCDBModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="Removed" ColumnName="Removed" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserTypes">
+            <EntityTypeMapping TypeName="AUCDBModel.tblUserType">
+              <MappingFragment StoreEntitySet="tblUserTypes">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAppStatus">
+            <EntityTypeMapping TypeName="AUCDBModel.tblAppStatu">
+              <MappingFragment StoreEntitySet="tblAppStatus">
+                <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

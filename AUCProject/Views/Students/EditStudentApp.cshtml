@@ -1,0 +1,72 @@
+﻿@model Auc.Common.ViewModels.Students.StudentVM
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<h2>Edit</h2>
+@using (Html.BeginForm("EditStudentApp", "Students", new { enctype = "multipart/form-data" }))
+{
+
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.FirstName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.SecondName)
+        @Html.TextBoxFor(m => m.SecondName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.SecondName)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.BirthDate)
+        @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", @id = "Date" })
+        @Html.ValidationMessageFor(m => m.BirthDate)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NationalId)
+        @Html.TextBoxFor(m => m.NationalId, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NationalId)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.UniversityId)
+        @Html.DropDownListFor(m => m.UniversityId, new SelectList(ViewBag.Universities, "Id", "Name"), "Select University", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UniversityId)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Major)
+        @Html.TextBoxFor(m => m.Major, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Major)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.GPA)
+        @Html.TextBoxFor(m => m.GPA, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.GPA)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Resume)
+        @Html.TextBoxFor(m => m.Resume, "", new { type = "file" })
+        @Html.ValidationMessageFor(m => m.Resume)
+    </div>
+
+    <button class="btn btn-info" type="submit">Continue</button>
+}
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery-ui-1.13.0.js"></script>
+    <script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+
+    <script>
+        $("#Date").datepicker();
+    </script>
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4436518a1d404cb5b5662731e849eb29" Name="Diagram1">
+        <EntityTypeShape EntityType="AUCDBModel.tblStudent" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="AUCDBModel.tblUniversity" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="AUCDBModel.tblUser" Width="1.5" PointX="0.75" PointY="5.875" />
+        <AssociationConnector Association="AUCDBModel.FK_tblStudents_tblUniversity" />
+        <AssociationConnector Association="AUCDBModel.FK_tblStudents_tblUser" />
+        <EntityTypeShape EntityType="AUCDBModel.tblUserType" Width="1.5" PointX="0.75" PointY="11.25" />
+        <AssociationConnector Association="AUCDBModel.FK_tblUser_tblUserTypes" />
+        <EntityTypeShape EntityType="AUCDBModel.tblAppStatu" Width="1.5" PointX="5.375" PointY="0.875" />
+        <AssociationConnector Association="AUCDBModel.FK_tblStudents_tblAppStatus" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
