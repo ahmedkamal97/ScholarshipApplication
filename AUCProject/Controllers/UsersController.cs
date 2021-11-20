@@ -63,7 +63,7 @@ namespace AUCProject.Controllers
 
             {
                 if (_userService.CheckPassWord(Entity.PassWord, User.Id) == null)
-                    return RedirectToAction("Index", "Students");
+                    return RedirectToAction("Index", "Dashboard");
                 else
                 {
                     ModelState.AddModelError("Password", "Password is InnCorrect");

@@ -159,7 +159,7 @@ namespace AUCProject.Controllers
                 return View(Entity);
             }
             _studentService.Update(Entity.StatusId, Entity.Id);
-            _mailService.SendMail(Entity.Id);
+        //    _mailService.SendMail(Entity.Id);
             return RedirectToAction("Index");
         }
 
