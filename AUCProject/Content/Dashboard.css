@@ -101,3 +101,50 @@
         font-weight:bold;
     }
 
+
+
+
+.Form {
+    width: 50%;
+    margin-left: 25%;
+    border: 1px solid rgba(137, 109, 34,.2);
+    background-color: white;
+    box-shadow: 11px 13px 39px -17px rgba(0,0,0,0.81);
+    -webkit-box-shadow: 11px 13px 39px -17px rgba(0,0,0,0.81);
+    -moz-box-shadow: 11px 13px 39px -17px rgba(0,0,0,0.81);
+    border-radius: 20px;
+    margin-top:50px;
+    
+}
+
+
+
+.VerticalForm {
+    width: 100%;
+    border: 1px solid rgba(137, 109, 34,.2);
+    background-color: white;
+    box-shadow: 11px 13px 39px -17px rgba(0,0,0,0.81);
+    -webkit-box-shadow: 11px 13px 39px -17px rgba(0,0,0,0.81);
+    -moz-box-shadow: 11px 13px 39px -17px rgba(0,0,0,0.81);
+    border-radius: 20px;
+}
+
+
+.FormHeader {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    width: 100%;
+    background-color: lightgray;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+.FormContent{
+    width:60%;
+    margin-left:20%;
+    padding:30px;
+}

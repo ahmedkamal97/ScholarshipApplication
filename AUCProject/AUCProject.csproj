@@ -336,6 +336,7 @@
     <Content Include="Content\Dashboard.css" />
     <Content Include="Content\Imgs\Accept.png" />
     <Content Include="Content\Imgs\All.png" />
+    <Content Include="Content\Imgs\Login.png" />
     <Content Include="Content\Imgs\pending.png" />
     <Content Include="Content\Imgs\Reject.jpg" />
     <Content Include="Content\Imgs\scholarship-books.jpg" />

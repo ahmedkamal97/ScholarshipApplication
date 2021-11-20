@@ -4,29 +4,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add</h2>
-@using (Html.BeginForm("Register", "Users"))
-{
-    <div class="form-group">
-        @Html.LabelFor(m => m.EmailAddress)
-        @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.EmailAddress)
+
+<div class="row">
+    <div class="container">
+      
+        <div class="Form">
+            <div class="FormHeader">
+                LogIn
+            </div>
+
+            <div class="FormContent">
+                @using (Html.BeginForm("Register", "Users"))
+                {
+            <div class="form-group">
+                @Html.LabelFor(m => m.EmailAddress)
+                @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.EmailAddress)
+            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.PassWord)
+                                @Html.TextBoxFor(m => m.PassWord, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PassWord)
+                            </div>
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.RePassWord)
+                                                @Html.TextBoxFor(m => m.RePassWord, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.RePassWord)
+
+                                            </div>
+
+                                                            <button class="btn btn-info" type="submit">Continue</button>}
+            </div>
+
+     
+
+        </div>
+       
+          
+        
+      
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.PassWord)
-        @Html.TextBoxFor(m => m.PassWord, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.PassWord)
-    </div>
+</div>
 
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.RePassWord)
-        @Html.TextBoxFor(m => m.RePassWord, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.RePassWord)
-
-    </div>
-
-    <button class="btn btn-info" type="submit">Continue</button>
-}
 
