@@ -1,4 +1,4 @@
-﻿
+﻿@model Auc.Common.ViewModels.Dashboard.DashboardContainerVM
 @{
     ViewBag.Title = "Index";
 }
@@ -11,35 +11,66 @@
 
         <div class="Data">
 
-            <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
 
-            <div class="panel panel-info col-md-2">
+
+            <div class="panel panel-warning col-md-2">
                 <div class="panel-heading">
-                    Pending App
+                    All Apps
                 </div>
                 <div class="panel-body">
-                    Pending
+                    <div class="MyImg">
+                        <img src="~/Content/Imgs/All.png" />
+                    </div>
+                    <p>
+                        <a href="@Url.Action("Index","Students")" target="_blank"> @Model.PendingCount</a>
+
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="panel panel-info col-md-2">
+                <div class="panel-heading">
+                    Pending Apps
+                </div>
+                <div class="panel-body">
+                    <div class="MyImg">
+                        <img src="~/Content/Imgs/pending.png" />
+                    </div>
+                    <p>
+                        @Model.PendingCount
+                    </p>
                 </div>
             </div>
             <div class="col-md-1"></div>
             <div class="panel panel-success col-md-2">
                 <div class="panel-heading">
-                    Accepted App
+                    Accepted Apps
                 </div>
                 <div class="panel-body">
-                    Pending
+                    <div class="MyImg">
+                        <img src="~/Content/Imgs/Accept.png" />
+                    </div>
+                    <p>
+                        @Model.AceptedCount
+                    </p>
                 </div>
             </div>
             <div class="col-md-1"></div>
-            <div class="panel panel-warning col-md-2">
+            <div class="panel panel-danger col-md-2">
                 <div class="panel-heading">
-                    Rejecyed App
+                    Rejected Apps
                 </div>
                 <div class="panel-body">
-                    Pending
+                    <div class="MyImg">
+                        <img src="~/Content/Imgs/Reject.jpg" />
+                    </div>
+                    <p>
+                        @Model.RejectedCount
+                    </p>
                 </div>
             </div>
-
+            <div class="col-md-1"></div>
 
         </div>
     </div>

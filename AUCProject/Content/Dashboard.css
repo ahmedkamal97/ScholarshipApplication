@@ -25,6 +25,55 @@
 }
 
 
-.Data{
-    margin-top:30px;
+.panel-heading{
+    font-size:16px;
+}
+.Data {
+    margin-top: 30px;
+}
+
+.MyImg{
+    float:left;
+    width:50%;
+}
+
+.MyImg img{
+    height:100%;
+    width:100%;
+}
+
+.panel-info P {
+    font-size: 20px;
+    color: #3a87ad;
+    font-weight:bold;
+    float:left;
+    width: 50%;
+    padding: 15px;
+}
+
+.panel-warning a {
+    font-size: 20px;
+    color: #c09853;
+    font-weight: bold;
+    float: left;
+    width: 50%;
+    padding: 15px;
+}
+
+.panel-danger P {
+    font-size: 20px;
+    color: #b94a48;
+    font-weight: bold;
+    float: left;
+    width: 50%;
+    padding: 15px;
+}
+
+.panel-success P {
+    font-size: 20px;
+    color: #468847;
+    font-weight: bold;
+    float: left;
+    width: 50%;
+    padding: 15px;
 }
