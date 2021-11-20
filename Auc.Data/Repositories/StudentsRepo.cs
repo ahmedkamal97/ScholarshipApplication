@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Auc.Data.DAL;
+using System.Data.Entity.Migrations;
 
 namespace Auc.Data.Repositories
 {
@@ -18,7 +19,7 @@ namespace Auc.Data.Repositories
 
         public void Add(tblStudent Entity)
         {
-            _db.tblStudents.Add(Entity);
+            _db.tblStudents.AddOrUpdate(x=> new { x.UserId,x.NationalId},Entity);
         }
 
      
